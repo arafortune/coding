@@ -1,10 +1,15 @@
+CC = gcc
+OUTPUT = build
 OBJS = \
-	  binary_search.o \
+	  binary_search.elf \
 
-TESTCASE_OBJ = testcase.o
+test: $(OBJS)
 
-tests: $(OBJS) $(TESTCASE_OBJ)
-		ld -o testcase $(OBJS) $(TESTCASE_OBJ)
+%.elf: %.c $(OUTPUT)
+	$(CC) $< -o $(OUTPUT)/$@
+
+$(OUTPUT):
+	mkdir $(OUTPUT)
 
 clean:
-		rm $(OBJS) $(TESTCASE_OBJ)
+		rm -rf $(OUTPUT)
