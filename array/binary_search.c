@@ -15,19 +15,19 @@
 
 int search(int* nums, int numsSize, int target) {
     int left = 0;
-    int right = numsSize - 1;
+    int right = numsSize;
     int mid;
 
     // 理解搜索区间和边界条件的时间，常见的错误是left和right赋值逻辑与边界条件不匹配
     // 搜索区间为[left, right]时，left可以等于right，下一步搜索区间为[left, mid-1]或[mid+1, right]
-    // 搜索区间为[left, right)时，left不能等于right，下一步搜索区间为[left, mid]或[mid+1, right]
+    // 搜索区间为[left, right)时，left不能等于right，下一步搜索区间为[left, mid)或[mid+1, right)
     // 区间的定义就是不变量，在循环中坚持根据查找区间的定义来做边界处理，就是循环不变量规则。
-    while (left <= right) {
+    while (left < right) {
         mid = left + (right - left) / 2;
         if (nums[mid] == target) {
             return mid;
         } else if (nums[mid] > target) {
-            right = mid - 1;
+            right = mid;
         } else {
             left = mid + 1;
         }
