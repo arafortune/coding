@@ -2,6 +2,7 @@ CC = gcc
 OUTPUT = build
 OBJS = \
 	  binary_search.elf \
+	  remove_dup_26.elf \
 
 test: $(OBJS)
 
